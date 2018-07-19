@@ -26,7 +26,7 @@ app.use('/api/v1/', routes);
 
 // Welcome entry to the app
 app.get('/', (req, res) => res.status(200).json({ message: 'welcome to book api' }));
-
+/* eslint-disable  no-console */
 app.listen(port, () => { console.log('server started at port:', port); });
 
 export default app;
