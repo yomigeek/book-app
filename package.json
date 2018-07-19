@@ -4,8 +4,11 @@
   "description": "Create a community of like minded authors to foster inspiration and innovation by leveraging the modern web.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node server/index.js"
+    "test": "mocha server/test/",
+    "start": "nodemon --exec babel-node server/index.js",
+    "lint": "eslint server/",
+    "migrate:db": "sequelize db:migrate",
+    "undomigrate:db": "sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
@@ -23,13 +26,17 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.2",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "joi": "^13.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
