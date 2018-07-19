@@ -1,6 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+import dotenv from 'dotenv';
+import routes from './routes';
+
+dotenv.config();
 
 // Setting up the express app
 const app = express();
@@ -16,6 +20,9 @@ if (app.get('env') === 'production') {
 } else {
   app.use(logger('dev'));
 }
+
+// Application Routes
+app.use('/api/v1/', routes);
 
 // Welcome entry to the app
 app.get('/', (req, res) => res.status(200).json({ message: 'welcome to book api' }));
