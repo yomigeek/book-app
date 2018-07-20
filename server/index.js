@@ -21,11 +21,11 @@ if (app.get('env') === 'production') {
   app.use(logger('dev'));
 }
 
-// Application Routes
-app.use('/api/v1/', routes);
-
 // Welcome entry to the app
 app.get('/', (req, res) => res.status(200).json({ message: 'welcome to book api' }));
+// Application Routes
+app.use('/api/v1/', routes);
+app.all('*', (req, res) => res.status(404).json({ message: 'You are not in the right place' }));
 /* eslint-disable  no-console */
 app.listen(port, () => { console.log('server started at port:', port); });
 
