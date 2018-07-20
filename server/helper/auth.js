@@ -10,5 +10,3 @@ export const generateToken = (user) => {
     process.env.JWT_SECRET, { expiresIn: 24 * 60 * 60 }).toString();
   return token;
 };
-
-export const verifyToken = token => jwt.verify(token, process.env.JWT_SECRET);
