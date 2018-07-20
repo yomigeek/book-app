@@ -30,12 +30,9 @@
     "chai-http": "^4.0.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
-<<<<<<< HEAD
     "mocha": "^5.2.0",
-=======
     "joi": "^13.4.0",
     "jsonwebtoken": "^8.3.0",
->>>>>>> ft(user-login): implement login
     "morgan": "^1.9.0",
     "nodemon": "^1.18.2",
     "passport": "^0.4.0",
@@ -43,8 +40,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.38.0",
-    "joi": "^13.4.0"
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
