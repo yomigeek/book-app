@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
+import passport from 'passport';
+
 import routes from './routes';
 
 dotenv.config();
@@ -13,7 +15,10 @@ const port = process.env.PORT || 5000;
 // Ensures incoming data are parsed
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(passport.initialize());
+require('./config/passport')();
+require('./config/strategies/jwt')();
+require('./config/strategies/twitter')();
 // Morgan logger
 if (app.get('env') === 'production') {
   app.use(logger('combined'));
