@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
 import passport from 'passport';
-
+import session from 'express-session';
 import routes from './routes';
 
 dotenv.config();
@@ -15,7 +15,9 @@ const port = process.env.PORT || 5000;
 // Ensures incoming data are parsed
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: 'secretworld' }));
 app.use(passport.initialize());
+app.use(passport.session());
 require('./config/passport')();
 require('./config/strategies/jwt')();
 require('./config/strategies/twitter')();
@@ -25,7 +27,15 @@ if (app.get('env') === 'production') {
 } else {
   app.use(logger('dev'));
 }
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 // Welcome entry to the app
 app.get('/', (req, res) => res.status(200).json({ message: 'welcome to book api' }));
 // Application Routes
